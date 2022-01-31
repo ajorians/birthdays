@@ -105,11 +105,40 @@ if ($result->num_rows > 0)
 		$EarthDaysOldNextMercuryBDay = (floor($AgeMercuryYears)+1) * 87.97;
 		$NextMercuryBDay = $birthday + ($EarthDaysOldNextMercuryBDay*(60*60*24));
 
-		$AgeVenusDays = $ageDiff / (60*60*24)/243;
+		$AgeVenusDays = $ageDiff / (60*60*24)/243.0;
                 $AgeVenusYears = $AgeEarthDays / 224.7;
                 $EarthDaysOldNextVenusBDay = (floor($AgeVenusYears)+1) * 224.7;
-                $NextVenusBDay = $birthday + ($EarthDaysOldNextVenusBDay*(60*60*24));
+		$NextVenusBDay = $birthday + ($EarthDaysOldNextVenusBDay*(60*60*24));
 
+		$AgeMarsDays = $ageDiff / (60*60*24)/1.03;
+                $AgeMarsYears = $AgeEarthDays / (686.98);
+                $EarthDaysOldNextMarsBDay = (floor($AgeMarsYears)+1) * (686.98);
+		$NextMarsBDay = $birthday + ($EarthDaysOldNextMarsBDay*(60*60*24));
+
+		$AgeJupiterDays = $ageDiff / (60*60*24)/.41;
+                $AgeJupiterYears = $AgeEarthDays / (11.86*365.25);
+                $EarthDaysOldNextJupiterBDay = (floor($AgeJupiterYears)+1) * (11.86*365.25);
+                $NextJupiterBDay = $birthday + ($EarthDaysOldNextJupiterBDay*(60*60*24));
+
+		$AgeSaturnDays = $ageDiff / (60*60*24)/.44;
+                $AgeSaturnYears = $AgeEarthDays / (29.46*365.25);
+                $EarthDaysOldNextSaturnBDay = (floor($AgeSaturnYears)+1) * (29.46*365.25);
+		$NextSaturnBDay = $birthday + ($EarthDaysOldNextSaturnBDay*(60*60*24));
+
+		$AgeUranusDays = $ageDiff / (60*60*24)/.72;
+                $AgeUranusYears = $AgeEarthDays / (30685);
+                $EarthDaysOldNextUranusBDay = (floor($AgeUranusYears)+1) * (30685);
+		$NextUranusBDay = $birthday + ($EarthDaysOldNextUranusBDay*(60*60*24));
+
+		$AgeNeptuneDays = $ageDiff / (60*60*24)/.67;
+                $AgeNeptuneYears = $AgeEarthDays / (60190);
+                $EarthDaysOldNextNeptuneBDay = (floor($AgeNeptuneYears)+1) * (60190);
+		$NextNeptuneBDay = $birthday + ($EarthDaysOldNextNeptuneBDay*(60*60*24));
+
+		$AgePlutoDays = $ageDiff / (60*60*24)/6.39;
+                $AgePlutoYears = $AgeEarthDays / (247.92*365.25);
+                $EarthDaysOldNextPlutoBDay = (floor($AgePlutoYears)+1) * (247.92*365.25);
+                $NextPlutoBDay = $birthday + ($EarthDaysOldNextPlutoBDay*(60*60*24));
 
 echo "<table>
   <tr>
@@ -119,22 +148,60 @@ echo "<table>
     <th>Next Birthday</th>
   </tr>
   <tr>
-    <td>Mercury <img src=\"https://www.exploratorium.edu/ronh/age/images/mercury.gif\" width=\"30\" height=\"30\" alt=\"Mercury\"></td>
+    <td>Mercury <img src=\"images/mercury.gif\" width=\"30\" height=\"30\" alt=\"Mercury\"></td>
     <td>". round($AgeMercuryDays,1) . "</td>
     <td>". round($AgeMercuryYears, 2) . "</td>
     <td>". date("D M j Y", $NextMercuryBDay) . "</td>
   </tr>
-  <td>Venus <img src=\"https://www.exploratorium.edu/ronh/age/images/venus.gif\" width=\"30\" height=\"30\" alt=\"Venus\"></td>
+  <td>Venus <img src=\"images/venus.gif\" width=\"30\" height=\"30\" alt=\"Venus\"></td>
     <td>". round($AgeVenusDays,1) . "</td>
     <td>". round($AgeVenusYears, 2) . "</td>
     <td>". date("D M j Y", $NextVenusBDay) . "</td>
   </tr>
   <tr>
-    <td>Earth <img src=\"https://www.exploratorium.edu/ronh/age/images/earth.gif\" width=\"30\" height=\"30\" alt=\"Earth\"></td>
+    <td>Earth <img src=\"images/earth.gif\" width=\"30\" height=\"30\" alt=\"Earth\"></td>
     <td>". number_format($AgeEarthDays) . "</td>
-    <td>". round($AgeEarthYears, 1) . "</td>
+    <td>". round($AgeEarthYears, 2) . "</td>
     <td>". date("D M j Y", $nextbday) . "</td>
   </tr>
+  <tr>
+    <td>Mars <img src=\"images/mars.gif\" width=\"30\" height=\"30\" alt=\"Mars\"></td>
+    <td>". number_format(round($AgeMarsDays,1)) . "</td>
+    <td>". round($AgeMarsYears, 2) . "</td>
+    <td>". date("D M j Y", $NextMarsBDay) . "</td>
+  </tr>
+  <tr>
+    <td>Jupiter <img src=\"images/jupiter.gif\" width=\"30\" height=\"30\" alt=\"Jupiter\"></td>
+    <td>". number_format(round($AgeJupiterDays,1)) . "</td>
+    <td>". round($AgeJupiterYears, 2) . "</td>
+    <td>". date("D M j Y", $NextJupiterBDay) . "</td>
+  </tr>
+  <tr>
+    <td>Saturn <img src=\"images/saturn.gif\" width=\"30\" height=\"30\" alt=\"Saturn\"></td>
+    <td>". number_format(round($AgeSaturnDays,1)) . "</td>
+    <td>". round($AgeSaturnYears, 2) . "</td>
+    <td>". date("D M j Y", $NextSaturnBDay) . "</td>
+  </tr>
+  <tr>
+    <td>Uranus <img src=\"images/uranus.gif\" width=\"30\" height=\"30\" alt=\"Uranus\"></td>
+    <td>". number_format(round($AgeUranusDays,1)) . "</td>
+    <td>". round($AgeUranusYears, 2) . "</td>
+    <td>". date("D M j Y", $NextUranusBDay) . "</td>
+  </tr>
+  <tr>
+    <td>Neptune <img src=\"images/neptune.gif\" width=\"30\" height=\"30\" alt=\"Neptune\"></td>
+    <td>". number_format(round($AgeNeptuneDays,1)) . "</td>
+    <td>". round($AgeNeptuneYears, 2) . "</td>
+    <td>". date("D M j Y", $NextNeptuneBDay) . "</td>
+  </tr>
+  <tr>
+    <td>Pluto <img src=\"images/pluto.gif\" width=\"30\" height=\"30\" alt=\"Pluto\"></td>
+    <td>". number_format(round($AgePlutoDays,1)) . "</td>
+    <td>". round($AgePlutoYears, 2) . "</td>
+    <td>". date("D M j Y", $NextPlutoBDay) . "</td>
+  </tr>
+
+
 </table>";
 
 		$daysUntilNextBDay = ceil(($nextbday-time())/60/60/24);
