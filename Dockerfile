@@ -10,6 +10,4 @@ RUN sed -i "s/dbpasswd/${DATABASE_PASSWD}/g" /var/www/html/index.php
 RUN sed -i "s/birthdaysdb/${DATABASE_DB}/g" /var/www/html/index.php
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN apt-get update && apt-get upgrade -y
-#WORKDIR /usr/src/myapp
-#EXPOSE 80
-#CMD [ "php", "-S 0.0.0.0:80", "./index.php" ]
+RUN ["apt-get", "install", "-y", "vim"]

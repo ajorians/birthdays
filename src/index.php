@@ -50,6 +50,9 @@ if ($conn->connect_error) {
 }
 echo "<P>Connected successfully</P>";
 
+$sqlCreateTableIfNotExists = "create table if not exists Entries(order_id INT NOT NULL AUTO_INCREMENT, person_name VARCHAR(100) NOT NULL, birthday_date DATE, PRIMARY KEY ( order_id ));";
+mysqli_query($conn, $sqlCreateTableIfNotExists);
+
 if ( isset($_REQUEST) )
 {
 	$added_name = $_REQUEST['person_name'];
