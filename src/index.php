@@ -9,7 +9,7 @@ create table Entries(
 
 <HTML>
 
-<TITLE>Birthdays At A Glace</TITLE>
+<TITLE>Birthdays At A Glance</TITLE>
 
 <HEAD>
 <style>
@@ -37,8 +37,8 @@ tr:nth-child(even) {
 
 <?php
 $servername = "localhost";
-$username = "<USERHERE>";
-$password = "<PASSHERE>";
+$username = "dbuser";
+$password = "dbpasswd";
 $dbname = "birthdaysdb";
 
 // Create connection
