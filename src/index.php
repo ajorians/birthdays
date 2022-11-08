@@ -13,6 +13,29 @@ create table Entries(
 
 <HEAD>
 <style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -83,13 +106,15 @@ echo "<H1>Today is " . date("Y/m/d", $today) . "</H1>";
 $sql = "SELECT order_id, person_name, birthday_date FROM Entries";
 $result = $conn->query($sql);
 
+$people = $result->fetch_all(MYSQLI_ASSOC);
+
 if ($result->num_rows > 0)
 {
-	while($row = $result->fetch_assoc())
+	foreach( $people as $row )
 	{
-		echo "<H2>" . $row["person_name"]. "</H2>";
+		echo "<button type=\"button\" class=\"collapsible\">" . $row["person_name"];
 		$birthday = strtotime($row["birthday_date"]);
-		echo "<P>Birthday: " . date("Y/m/d", $birthday). "</P>";
+		echo " - Birthday: " . date("Y/m/d", $birthday). "</button>";
 
 		$ageDiff = $today - $birthday;
 		
@@ -143,7 +168,7 @@ if ($result->num_rows > 0)
                 $EarthDaysOldNextPlutoBDay = (floor($AgePlutoYears)+1) * (247.92*365.25);
                 $NextPlutoBDay = $birthday + ($EarthDaysOldNextPlutoBDay*(60*60*24));
 
-echo "<table>
+echo "<div class=\"content\"><table>
   <tr>
     <th>Planet</th>
     <th>Age Days</th>
@@ -209,8 +234,32 @@ echo "<table>
 
 		$daysUntilNextBDay = ceil(($nextbday-time())/60/60/24);
 
-		echo "<P>Next birthday: " . date("D M j Y", $nextbday) . " - Days until next birthday " . $daysUntilNextBDay. "</P><br>";
+		echo "<P>Next birthday: " . date("D M j Y", $nextbday) . " - Days until next birthday " . $daysUntilNextBDay. "</P><br></div>";
 	}
+
+	echo "<BR><BR><table><tr><td></td>";
+	foreach( $people as $row )
+	{
+        	echo "<td>" . $row["person_name"] . "</td>";
+	}
+	echo "</tr>";
+	foreach( $people as $rowa )
+	{
+		echo "<tr><td>" . $rowa["person_name"] . "</td>";
+		foreach( $people as $rowb )
+		{
+			$birthdaya = strtotime($rowa["birthday_date"]);
+			$birthdayb = strtotime($rowb["birthday_date"]);
+			$diffBDay = $birthdayb - $birthdaya;
+
+			$DiffInDays = round($diffBDay / (60*60*24));
+	                $DiffInYears = $DiffInDays / 365.25;
+
+                	echo "<td>" . round($DiffInYears, 2) . "</td>";
+        	}
+		echo "</tr>";
+        }
+	echo "</table>";
 }
 else
 {
@@ -234,6 +283,23 @@ $conn->close();
 
             <input type="submit" value="Submit">
         </form>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
 
 </BODY>
 </HTML>
