@@ -18,7 +18,7 @@ jobs:
       id: version
       run: |
         output=$(date -u '+%Y%m%d%H%M%S')
-        echo ::set-output name=date_version:::$output
+        echo ::set-output name=date_version::$output
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
@@ -47,5 +47,5 @@ jobs:
         platforms: linux/arm64, linux/amd64, linux/arm/v7
         push: true
         tags: |
-          ${{github.repository}}:latest
-          ${{github.repository}}:${{steps.version.outputs.date_version}}
+          ghcr.io/${{github.repository}}:latest
+          ghcr.io/${{github.repository}}:${{steps.version.outputs.date_version}}
