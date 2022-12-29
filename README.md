@@ -3,9 +3,9 @@ A Simple PHP Site To List Birthdays, Next Birthday, and More Information.
 
 To build:
 
-docker build -t birthdays --build-arg DATABASE_HOST=localhost --build-arg DATABASE_USER=dbuser --build-arg DATABASE_PASSWD=dbpasswd --build-arg DATABASE_DB=birthdaydb .
+docker build -t birthdays .
 
-docker run -d --name=birthdays -p 8000:80 --restart unless-stopped birthdays
+docker run -d --name=birthdays --env DATABASE_HOST=myhost --env DATABASE_USER=mydbuser --env DATABASE_PASSWD=mydbpasswd --env DATABASE_DB=mybirthdaydb -p 8000:80 --restart unless-stopped birthdays
 
 Or with Docker-Compose:
 version: "3.9"
